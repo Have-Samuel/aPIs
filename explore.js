@@ -5,8 +5,15 @@ const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
 const client = require('twilio')(accountSid, authToken);
 
-console.log("Messages sent to your Twilio number:");
-client.messages
-  .list()
-  .then((messages) => messages.forEach((m) => console.log(m.sid)));
-  console.log("Gathering messages log");
+  async function deleteAllMessages() {
+    messages = awaits client.messages.list();
+    for (message of messages) {
+      console.warn(`Deleting message ${message.sid}`);
+      // await client.messages(message.sid).remove();
+    }
+  }
+
+  console.log("Messages sent to your Twilio number:");
+  deleteAllMessages()
+    .then(() => console.log('Done.'))
+    .catch((err) => console.error(err));
