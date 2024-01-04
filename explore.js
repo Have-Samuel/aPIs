@@ -6,10 +6,10 @@ const authToken = process.env.TWILIO_AUTH_TOKEN;
 const client = require('twilio')(accountSid, authToken);
 
   async function deleteAllMessages() {
-    messages = awaits client.messages.list();
+    const messages = await client.messages.list();
     for (message of messages) {
-      console.warn(`Deleting message ${message.sid}`);
-      // await client.messages(message.sid).remove();
+      console.warn(`Deleting ${message.sid}`);
+      messages.remove();
     }
   }
 
