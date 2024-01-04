@@ -5,5 +5,8 @@ const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
 const client = require('twilio')(accountSid, authToken);
 
-client.messages.list({limit: 20})
-               .then(messages => messages.forEach(m => console.log(m.sid)));
+console.log("Messages sent to your Twilio number:");
+client.messages
+  .list()
+  .then((messages) => messages.forEach((m) => console.log(m.sid)));
+  console.log("Gathering messages log");
